@@ -1,0 +1,37 @@
+#!/usr/bin/env ansible-playbook
+# ^ Trick: the above line can be used to make your play an executable
+
+tasks:
+
+  - name: run multiple commands and evaluate the output
+      ios_command:
+        commands:
+          - show version
+          - show interfaces
+        wait_for:
+          - result[0] contains IOS
+          - result[1] contains Loopback0
+
+  - name: configure top level configuration
+    ios_config:
+      lines: hostname {{ inventory_hostname }}
+      # inventory_host - uses the *configured* inventory file example etc/ansible/host
+      # ansible_host - uses the *discovered* gather facts hostname
+
+  - name: configure interface settings
+    ios_config:
+      lines:
+        - description test interface
+        - ip address 172.31.1.1 255.255.255.0
+      parents: interface Ethernet1
+
+  - name: configure interface settings
+    ios_config:
+      lines:
+        - description test interface
+        - ip address 172.31.1.1 255.255.255.0
+      parents: interface Ethernet1
+
+  - name: save running to startup when modified
+    ios_config:
+       save_when: modified

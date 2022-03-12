@@ -1,0 +1,14 @@
+---
+ansible_user: admin
+ansible_password: cisco
+url: "https://{{ansible_host}}/restconf"
+#resolve to ip#
+
+ftp_config:
+
+aaa_config:
+
+cert_config:
+
+ssh_config:
+

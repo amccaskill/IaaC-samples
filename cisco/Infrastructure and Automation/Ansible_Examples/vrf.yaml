@@ -1,0 +1,7 @@
+tasks:
+  - name: configure a vrf named management
+      ios_vrf:
+        name: management
+        description: oob mgmt vrf
+        interfaces:
+          - Management1

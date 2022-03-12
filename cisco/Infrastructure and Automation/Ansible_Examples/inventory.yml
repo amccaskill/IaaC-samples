@@ -1,0 +1,9 @@
+# Normally people name this file hosts.yml but inventory is a better description
+---
+all:
+  children:
+    routers:
+      hosts:
+        R1:
+        R2:
+        R3:
